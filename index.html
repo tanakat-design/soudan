@@ -102,11 +102,11 @@ function renderForm() {
   const sel = d.tournament && list.includes(d.tournament) ? d.tournament : (list.length === 1 ? list[0] : '');
   app.innerHTML = `<div class="header"><div><h1>受付アルバイト相談窓口</h1><div class="small">入力者：${esc(s.name)}</div></div><button class="link" onclick="logout()">ログアウト</button></div>
     ${S.sent ? '<div class="notice ok">送信しました。ご協力ありがとうございます。</div>' : ''}
-    <div class="notice info">気になった言動を、事実をもとに具体的に書いてください（例：休憩時間外に無断でタバコに行った）。点数化はしません。内容は運営担当者のみが確認します。</div>
+    <div class="notice info">気になった言動を、事実をもとに具体的に書いてください（例：休憩時間外に無断でタバコに行った）。点数化はしません。内容は受付の責任者のみが確認します。</div>
     <div class="card">
       <label for="fT">大会名<span class="req">必須</span></label>
       ${list.length ? `<select id="fT" onchange="saveDraft()"><option value="">選んでください</option>${list.map(t => `<option ${t === sel ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>`
-        : '<div class="notice err" style="margin:0">選べる大会がありません。運営担当者に連絡してください。</div>'}
+        : '<div class="notice err" style="margin:0">選べる大会がありません。受付の責任者に連絡してください。</div>'}
       <label for="fTarget">対象スタッフ<span class="req">必須</span></label>
       <input id="fTarget" maxlength="50" placeholder="名前" value="${esc(d.target)}" oninput="saveDraft()">
       <label for="fAction">言動<span class="req">必須・${MAX}字まで</span></label>
