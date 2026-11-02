@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>受付アルバイト相談窓口</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1f2329;--sub:#5f6672;--line:#dfe2e7;--main:#1a73e8;--main-d:#1558b0;--warn:#b3261e;--ok:#1e7d3a}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 48px}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:4px 0 14px}
+h1{font-size:20px;margin:0;line-height:1.35}
+.small{font-size:13px;color:var(--sub)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+label{display:block;font-size:14px;font-weight:700;margin:14px 0 6px}
+label:first-child{margin-top:0}
+label .req{color:var(--warn);font-weight:400;font-size:12px;margin-left:4px}
+label .opt{color:var(--sub);font-weight:400;font-size:12px;margin-left:4px}
+input,select,textarea{width:100%;font-size:16px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text);font-family:inherit}
+textarea{resize:vertical;min-height:110px;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:2px solid #c6dafc;border-color:var(--main)}
+.count{text-align:right;font-size:12px;color:var(--sub);margin-top:4px}
+.count.over{color:var(--warn);font-weight:700}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:15px;font-size:17px;font-weight:700;color:#fff;background:var(--main);margin-top:18px;cursor:pointer}
+.btn:active{background:var(--main-d)}
+.btn:disabled{background:#a9c3ec}
+.link{background:none;border:0;color:var(--main);font-size:14px;padding:4px 0;cursor:pointer;white-space:nowrap}
+.notice{border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.6;margin-bottom:12px}
+.notice.info{background:#eef4fe;color:#1d3f73}
+.notice.ok{background:#e9f6ec;color:var(--ok)}
+.notice.err{background:#fdecea;color:var(--warn)}
+.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:#202124;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:10;max-width:90%}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbypCH0-7p0n4Ex6k8uzEZmszemgsgH_SQvsAejX7004MTMoGrMk4bSUA25A0jfbHcFz/exec';
+const MAX = 200;
+
+async function call(fn, ...args) {
+  if (window.google && google.script && google.script.run) {
+    return new Promise((ok, ng) => google.script.run.withSuccessHandler(ok).withFailureHandler(ng)[fn](...args));
+  }
+  const r = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ fn, args }) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || 'エラーが発生しました');
+  return j.result;
+}
+
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} },
+};
+const S = { session: LS.get('sdSession', null), tournaments: [], busy: false, sent: false, err: '' };
+const app = document.getElementById('app');
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const len = s => Array.from(String(s || '')).length;
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+function toast(m) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 2600); }
+function msg(e) { return e && e.message ? e.message : '通信できませんでした。電波の良い場所で再度お試しください'; }
+
+function render() { S.session ? renderForm() : renderLogin(); }
+
+function renderLogin() {
+  app.innerHTML = `<div class="header"><h1>受付アルバイト相談窓口</h1></div>
+    <div class="card">
+      <label for="lgName">名前</label><input id="lgName" autocomplete="name" value="${esc(S.loginName != null ? S.loginName : LS.get('sdName', ''))}">
+      <label for="lgPin">PIN</label><input id="lgPin" type="password" inputmode="numeric" autocomplete="off">
+      ${S.err ? `<div class="notice err" style="margin:12px 0 0">${esc(S.err)}</div>` : ''}
+      <button class="btn" ${S.busy ? 'disabled' : ''} onclick="doLogin()">${S.busy ? '確認中…' : 'ログイン'}</button>
+    </div>`;
+}
+async function doLogin() {
+  const name = document.getElementById('lgName').value.trim(), pin = document.getElementById('lgPin').value.trim();
+  S.loginName = name;
+  if (!name) return toast('名前を入力してください');
+  if (!pin) return toast('PINを入力してください');
+  S.busy = true; S.err = ''; render();
+  try {
+    const r = await call('login', pin, name);
+    S.tournaments = r.tournaments; S.session = { name, pin };
+    LS.set('sdSession', S.session); LS.set('sdName', name);
+  } catch (e) { S.err = msg(e); }
+  S.busy = false; render();
+}
+function logout() { if (!confirm('ログアウトしますか？')) return; LS.del('sdSession'); S.session = null; S.sent = false; render(); }
+
+function draft() { return LS.get('sdDraft', { tournament: '', target: '', action: '', note: '' }); }
+function saveDraft() {
+  const v = id => (document.getElementById(id) || {}).value || '';
+  const o = draft(), n = { tournament: v('fT'), target: v('fTarget'), action: v('fAction'), note: v('fNote') };
+  if (o.reqId && o.tournament === n.tournament && o.target === n.target && o.action === n.action && o.note === n.note) n.reqId = o.reqId; // 再送時の二重登録を防ぐ
+  LS.set('sdDraft', n);
+}
+function renderForm() {
+  const d = draft(), s = S.session;
+  const list = S.tournaments;
+  const sel = d.tournament && list.includes(d.tournament) ? d.tournament : (list.length === 1 ? list[0] : '');
+  app.innerHTML = `<div class="header"><div><h1>受付アルバイト相談窓口</h1><div class="small">入力者：${esc(s.name)}</div></div><button class="link" onclick="logout()">ログアウト</button></div>
+    ${S.sent ? '<div class="notice ok">送信しました。ご協力ありがとうございます。</div>' : ''}
+    <div class="notice info">気になった言動を、事実をもとに具体的に書いてください（例：休憩時間外に無断でタバコに行った）。点数化はしません。内容は運営担当者のみが確認します。</div>
+    <div class="card">
+      <label for="fT">大会名<span class="req">必須</span></label>
+      ${list.length ? `<select id="fT" onchange="saveDraft()"><option value="">選んでください</option>${list.map(t => `<option ${t === sel ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>`
+        : '<div class="notice err" style="margin:0">選べる大会がありません。運営担当者に連絡してください。</div>'}
+      <label for="fTarget">対象スタッフ<span class="req">必須</span></label>
+      <input id="fTarget" maxlength="50" placeholder="名前" value="${esc(d.target)}" oninput="saveDraft()">
+      <label for="fAction">言動<span class="req">必須・${MAX}字まで</span></label>
+      <textarea id="fAction" placeholder="いつ・何をしたか" oninput="count(this);saveDraft()">${esc(d.action)}</textarea>
+      <div class="count" id="fActionC"></div>
+      <label for="fNote">備考<span class="opt">任意・${MAX}字まで</span></label>
+      <textarea id="fNote" style="min-height:80px" placeholder="補足があれば" oninput="count(this);saveDraft()">${esc(d.note)}</textarea>
+      <div class="count" id="fNoteC"></div>
+      <button class="btn" id="sendBtn" ${S.busy || !list.length ? 'disabled' : ''} onclick="send()">${S.busy ? '送信中…' : '送信する'}</button>
+    </div>
+    <div class="small" style="text-align:center"><button class="link" onclick="reload()">大会一覧を更新</button></div>`;
+  count(document.getElementById('fAction')); count(document.getElementById('fNote'));
+}
+function count(el) {
+  const c = document.getElementById(el.id + 'C'), n = len(el.value);
+  c.textContent = n + ' / ' + MAX; c.classList.toggle('over', n > MAX);
+}
+async function reload() {
+  try { S.tournaments = (await call('getConfig')).tournaments; S.sent = false; render(); toast('更新しました'); } catch (e) { toast(msg(e)); }
+}
+async function send() {
+  if (S.busy) return;
+  saveDraft();
+  const d = draft();
+  if (!d.tournament) return toast('大会名を選んでください');
+  if (!d.target.trim()) return toast('対象スタッフを入力してください');
+  if (!d.action.trim()) return toast('言動を入力してください');
+  if (len(d.action) > MAX) return toast('言動は' + MAX + '字以内にしてください');
+  if (len(d.note) > MAX) return toast('備考は' + MAX + '字以内にしてください');
+  if (!confirm(`以下の内容で送信します。\n\n大会：${d.tournament}\n対象：${d.target}\n言動：${d.action}${d.note ? '\n備考：' + d.note : ''}`)) return;
+  const s = S.session;
+  if (!d.reqId) { d.reqId = uid(); LS.set('sdDraft', d); }
+  S.busy = true; S.sent = false; render();
+  try {
+    await call('submit', s.pin, s.name, d.tournament, d.target.trim(), d.action.trim(), d.note.trim(), d.reqId);
+    LS.set('sdDraft', { tournament: d.tournament, target: '', action: '', note: '' });
+    S.sent = true; window.scrollTo(0, 0);
+  } catch (e) {
+    if (/PIN/.test(msg(e))) { LS.del('sdSession'); S.session = null; S.err = 'PINが変更されました。もう一度ログインしてください'; }
+    else toast(msg(e) + '（入力内容は残っています）');
+  }
+  S.busy = false; render();
+}
+
+render();
+if (S.session) call('getConfig').then(r => { S.tournaments = r.tournaments; render(); }).catch(() => {});
+</script>
+</body>
+</html>
