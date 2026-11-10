@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPADIE FUKUOKA 受付リファレンス</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#113465; }
+  body { -webkit-font-smoothing:antialiased; text-wrap:pretty; }
+  * { box-sizing:border-box; }
+  a { color:#3fa9e0; text-decoration:underline; text-underline-offset:2px; }
+  a:hover { color:#eeb111; }
+  @keyframes spd-hop { 0%,100%{ transform:translateY(0); } 30%{ transform:translateY(-16px); } 60%{ transform:translateY(0); } }
+  @keyframes spd-bar { from { width:0%; } to { width:100%; } }
+  @keyframes spd-blink { 0%,100%{ opacity:1; } 50%{ opacity:.15; } }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; background:#113465; font-family:'Noto Sans JP',sans-serif; color:#e8eefb;">
+
+  <sc-if value="{{ showPattern }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed; inset:0; background-image:url('assets/spadie-pattern.png'); background-repeat:repeat; background-size:188px 188px; background-attachment:fixed; z-index:0;"></div>
+  </sc-if>
+
+  <div style="position:fixed; top:0; left:0; right:0; height:50px; z-index:50; background:rgba(6,20,45,0.94); border-bottom:1px solid rgba(255,255,255,0.16); display:flex; align-items:center; justify-content:space-between; padding:0 14px; box-shadow:0 2px 14px rgba(0,0,0,0.35);">
+    <div style="font-family:'DotGothic16',sans-serif; font-size:16px; letter-spacing:0.06em; color:#eeb111;">SPADIE<span style="color:rgba(255,255,255,0.35); margin:0 5px;">｜</span><span style="color:#ffffff;">FUKUOKA 2nd</span></div>
+    <div style="font-size:11px; letter-spacing:0.04em; color:rgba(232,238,251,0.72);">受付スタッフ Reference</div>
+  </div>
+
+  
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed; inset:0; z-index:200; background:#113465; background-image:url('assets/spadie-pattern.png'); background-size:188px 188px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; transition:opacity .38s ease; opacity:{{ loadOpacity }};">
+      <img src="assets/spadie-logo.png" alt="SPADIE" style="width:74%; max-width:340px; height:auto;">
+      <div style="display:flex; gap:16px; align-items:flex-end; height:56px;">
+        <img src="assets/char-spade.png" alt="" style="width:34px; height:auto; image-rendering:pixelated; animation:spd-hop .72s ease-in-out infinite; animation-delay:0s;">
+        <img src="assets/char-heart.png" alt="" style="width:34px; height:auto; image-rendering:pixelated; animation:spd-hop .72s ease-in-out infinite; animation-delay:.12s;">
+        <img src="assets/char-diamond.png" alt="" style="width:34px; height:auto; image-rendering:pixelated; animation:spd-hop .72s ease-in-out infinite; animation-delay:.24s;">
+        <img src="assets/char-club.png" alt="" style="width:34px; height:auto; image-rendering:pixelated; animation:spd-hop .72s ease-in-out infinite; animation-delay:.36s;">
+      </div>
+      <div style="width:62%; max-width:280px; height:6px; border-radius:999px; background:rgba(255,255,255,0.16); overflow:hidden;">
+        <div style="height:100%; background:#eeb111; border-radius:999px; animation:spd-bar 1.7s linear forwards;"></div>
+      </div>
+      <div style="font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.34em; color:#eeb111; animation:spd-blink .9s steps(1,end) infinite;">NOW LOADING</div>
+    </div>
+  </sc-if>
+
+<div style="position:relative; z-index:1; display:flex; justify-content:center; padding-top:50px;">
+    <div style="position:relative; width:100%; max-width:718px; border-left:1px solid rgba(255,255,255,0.22); border-right:1px solid rgba(255,255,255,0.22); box-shadow:0 0 44px rgba(0,0,0,0.5); overflow:hidden;">
+
+      <sc-if value="{{ showPattern }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute; inset:0; background-image:url('assets/spadie-pattern.png'); background-repeat:repeat; background-size:188px 188px; background-attachment:fixed; z-index:0;"></div>
+      </sc-if>
+      <div style="position:absolute; inset:0; background:rgba(6,20,45,0.42); z-index:1;"></div>
+
+      <div style="position:relative; z-index:2; padding:26px 19px 0;">
+
+        <div style="text-align: center; padding: 8px 0 22px; position: relative">
+          <img src="assets/spadie-logo.png" alt="SPADIE POKER LEAGUE" style="width:100%; max-width:400px; height:auto; display:block; margin:0 auto 20px;">
+          <div style="font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.26em; color:#3fa9e0; margin-bottom:10px;">RECEPTION STAFF REFERENCE</div>
+          <h1 style="font-family:'DotGothic16',sans-serif; font-size:29px; line-height:1.3; letter-spacing:0.04em; color:#eeb111; margin:0 0 16px; text-shadow:0 3px 0 rgba(0,0,0,0.45);">SPADIE FUKUOKA 1st<br><span style="font-size:20px; color:#ffffff;">受付リファレンス</span></h1>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
+            <span style="display:inline-flex; align-items:center; padding:7px 14px; border-radius:999px; background:rgba(238,177,17,0.14); border:1px solid rgba(238,177,17,0.55); color:#f5cf62; font-family:'DotGothic16',sans-serif; font-size:14px; letter-spacing:0.06em;">2026.11.12-11.15</span>
+            <span style="display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 999px; background: rgba(63,169,224,0.14); border: 1px solid rgba(63,169,224,0.5); color: #8ed2f2; font-size: 12.5px; font-weight: 700; font-family: DotGothic16">UNITEDLAB</span>
+          </div>
+        </div>
+
+        <div style="background:rgba(230,40,60,0.18); border:2px solid #ff4d5e; border-radius:10px; padding:16px 16px 6px; margin-bottom:26px; box-shadow:0 0 0 1px rgba(255,77,94,0.25), 0 6px 18px rgba(230,40,60,0.25);">
+          <div style="font-family:'DotGothic16',sans-serif; font-size:17px; letter-spacing:0.08em; color:#ff6b78; margin-bottom:12px;">⚠️ 重要点</div>
+          <div style="margin-bottom:14px;">
+            <div style="display:inline-block; background:#e8283c; color:#ffffff; font-family:'DotGothic16',sans-serif; font-size:13px; letter-spacing:0.06em; padding:4px 10px; border-radius:5px; margin-bottom:8px;">#01 Main Event</div>
+            <div style="font-size:14.5px; font-weight:700; line-height:1.6; color:#ffffff;">#01 Main Eventのダイレクトバイインが廃止されました</div>
+            <div style="font-size:13px; line-height:1.7; color:#ffe3e6;">チケットを持っているプレイヤーのみがエントリーできます</div>
+            <div style="font-size:13px; line-height:1.7; color:#ffe3e6;">基本的には禁止。DBIに関して海外のお客様からお問い合わせの場合は責任者まで。</div>
+          </div>
+          <div style="margin-bottom:10px; padding-top:12px; border-top:1px dashed rgba(255,77,94,0.6);">
+            <div style="display:inline-block; background:#e8283c; color:#ffffff; font-family:'DotGothic16',sans-serif; font-size:13px; letter-spacing:0.06em; padding:4px 10px; border-radius:5px; margin-bottom:8px;">警察・メディア対応</div>
+            <div style="font-size:14.5px; font-weight:700; line-height:1.6; color:#ffffff;">必ず、何も答えず責任者を呼んでください</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:34px;">
+          <div style="font-family:'DotGothic16',sans-serif; font-size:14px; letter-spacing:0.1em; color:#eeb111; margin-bottom:11px;">📖 目次</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <button type="button" onClick="{{ go.s01 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">01</span><span>はじめに</span></button>
+            <button type="button" onClick="{{ go.s02 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">02</span><span>出退勤の流れ</span></button>
+            <button type="button" onClick="{{ go.s03 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">03</span><span>勤務中の絶対ルール</span></button>
+            <button type="button" onClick="{{ go.s04 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">04</span><span>トラブル・緊急時対応</span></button>
+            <button type="button" onClick="{{ go.s05 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">05</span><span>メインイベント受付</span></button>
+            <button type="button" onClick="{{ go.s06 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">06</span><span>ドリンク代の請求ロジック</span></button>
+            <button type="button" onClick="{{ go.s07 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">07</span><span>リストバンド・協賛トナメ</span></button>
+            <button type="button" onClick="{{ go.s08 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">08</span><span>未成年者対応</span></button>
+            <button type="button" onClick="{{ go.s09 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">09</span><span>クレジットカード決済</span></button>
+            <button type="button" onClick="{{ go.s10 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">10</span><span>その他の受付対応</span></button>
+            <button type="button" onClick="{{ go.s11 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">11</span><span>服装・身だしなみチェック</span></button>
+            <button type="button" onClick="{{ go.s12 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">12</span><span>飲食・喫煙・SNS</span></button>
+            <button type="button" onClick="{{ go.s13 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">13</span><span>スタッフ用ドリンク・お弁当</span></button>
+            <button type="button" onClick="{{ go.s14 }}" style="display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:11px 10px; min-height:46px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; font-size:12.5px; font-weight:500; line-height:1.35; cursor:pointer;" style-hover="background:rgba(238,177,17,0.16); border-color:rgba(238,177,17,0.6);" style-active="transform:translateY(1px);"><span style="font-family:'DotGothic16',sans-serif; font-size:14px; color:#eeb111; flex:none;">14</span><span>物販</span></button>
+          </div>
+        </div>
+
+        <section id="s01" data-screen-label="01 はじめに" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">01 📌 はじめに</h2>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:15px 16px;">
+            <ul style="margin:0; padding-left:1.1em; font-size:14px; line-height:1.9; display:flex; flex-direction:column; gap:4px;">
+              <li>受付業務が初めての方は、本リファレンスを確認してください。</li>
+              <li>わからないことは遠慮なく責任者に聞いてください。</li>
+              <li>受付ソフトの操作は「受付の基礎」を参照してください。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s02" data-screen-label="02 出退勤の流れ" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">02 🕐 出退勤の流れ</h2>
+          <div style="position:relative; padding-left:44px;">
+            <div style="position:absolute; left:15px; top:16px; bottom:30px; width:2px; background:linear-gradient(180deg, rgba(238,177,17,0.75), rgba(63,169,224,0.55));"></div>
+            <div style="position:relative; margin-bottom:12px;">
+              <div style="position:absolute; left:-44px; top:0; width:32px; height:32px; border-radius:50%; background:#0b2145; border:2px solid #eeb111; color:#eeb111; font-family:'DotGothic16',sans-serif; font-size:14px; display:flex; align-items:center; justify-content:center;">01</div>
+              <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">出勤・着替え</div>
+                <div style="font-size:13px; line-height:1.8; color:rgba(232,238,251,0.8);">朝礼時間までに着替えを終え、勤務できる状態に</div>
+              </div>
+            </div>
+            <div style="position:relative; margin-bottom:12px;">
+              <div style="position:absolute; left:-44px; top:0; width:32px; height:32px; border-radius:50%; background:#0b2145; border:2px solid #eeb111; color:#eeb111; font-family:'DotGothic16',sans-serif; font-size:14px; display:flex; align-items:center; justify-content:center;">02</div>
+              <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">勤怠スタッフに声がけ</div>
+                <div style="font-size:13px; line-height:1.8; color:rgba(232,238,251,0.8);">勤務開始の報告をする</div>
+              </div>
+            </div>
+            <div style="position:relative; margin-bottom:12px;">
+              <div style="position:absolute; left:-44px; top:0; width:32px; height:32px; border-radius:50%; background:#0b2145; border:2px solid #eeb111; color:#eeb111; font-family:'DotGothic16',sans-serif; font-size:14px; display:flex; align-items:center; justify-content:center;">03</div>
+              <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">受付業務</div>
+                <div style="font-size:13px; line-height:1.8; color:rgba(232,238,251,0.8);">持ち場を離れる際は必ず社員に一声</div>
+              </div>
+            </div>
+            <div style="position:relative; margin-bottom:12px;">
+              <div style="position:absolute; left:-44px; top:0; width:32px; height:32px; border-radius:50%; background:#0b2145; border:2px solid #eeb111; color:#eeb111; font-family:'DotGothic16',sans-serif; font-size:14px; display:flex; align-items:center; justify-content:center;">04</div>
+              <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">退勤指示 → 経理へ直行</div>
+                <div style="font-size:13px; line-height:1.8; color:rgba(232,238,251,0.8);">勤怠スタッフから退勤指示を受けたら経理室へ</div>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <div style="position:absolute; left:-44px; top:0; width:32px; height:32px; border-radius:50%; background:#0b2145; border:2px solid #eeb111; color:#eeb111; font-family:'DotGothic16',sans-serif; font-size:14px; display:flex; align-items:center; justify-content:center;">05</div>
+              <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">報酬受け取り・署名</div>
+                <div style="font-size:13px; line-height:1.8; color:rgba(232,238,251,0.8);">各日に報酬を支払い。受取票に署名する</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s03" data-screen-label="03 勤務中の絶対ルール" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">03 🚫 勤務中の絶対ルール</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG1</span>
+              <div style="font-size:14px; line-height:1.75;">スマホの私的使用禁止（業務連絡以外は見ない）</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG2</span>
+              <div style="font-size:14px; line-height:1.75;">お客様の見える所に飲み物を置かない（飲むときはしゃがんで目立たないように）</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG3</span>
+              <div style="font-size:14px; line-height:1.75;">お客様との連絡先交換は禁止</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG4</span>
+              <div style="font-size:14px; line-height:1.75;">呼称「お兄さん」「お姉さん」は禁止</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG5</span>
+              <div style="font-size:14px; line-height:1.75;">勝手に持ち場を離れない（休憩時は社員に一言）</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG6</span>
+              <div style="font-size:14px; line-height:1.75;">PCの個人的使用禁止</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.08); border:1px solid rgba(255,85,102,0.38); border-radius:10px; padding:13px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; letter-spacing:0.06em; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">NG7</span>
+              <div style="font-size:14px; line-height:1.75;">拾得物は必ず責任者に渡す（シートで管理）</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s04" data-screen-label="04 トラブル・緊急時対応" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">04 🆘 トラブル・緊急時対応</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:4px;">💳 通常のトラブル</div>
+              <div style="font-size:12.5px; color:rgba(232,238,251,0.68); margin-bottom:9px;">チケット期限切れ・対象トナメ違い・金額不一致など</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>まず「少々お待ちください」とお客様に伝える</li>
+                <li>責任者に相談する</li>
+                <li>自分で判断して対応しない</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:4px;">🖥️ ソフト・システムのトラブル</div>
+              <div style="font-size:12.5px; color:rgba(232,238,251,0.68); margin-bottom:9px;">画面が閉じた／エラー表示／決済端末が反応しない／アラート表示</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>すぐに責任者を呼ぶ</li>
+                <li>勝手に対応しない</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,85,102,0.1); border:1px solid rgba(255,85,102,0.45); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px; color:#ff8a99;">🚨 大きなトラブル・緊急時（地震・火災など）</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>あわてず、その場で各自安全を確保する</li>
+                <li>中断・避難誘導は施設・責任者から指示が出る</li>
+                <li>指示があるまでパニックにならず冷静に対応する</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="s05" data-screen-label="05 メインイベント受付" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">05 👑 メインイベント受付</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">エントリー方法</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; gap:10px; align-items:baseline; font-size:13.5px; line-height:1.7;"><span style="font-family:'DotGothic16',sans-serif; color:#3fa9e0;">・</span><span>メインバウチャー2枚 ＋ <span style="font-family:'DotGothic16',sans-serif; font-size:16px; color:#eeb111;">¥5,000</span>（現金・クレジット・WebCoin決済可）</span></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">Day2以降の運用</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>現金 / 電子決済 / コイン / USDT / 選手契約履行</li>
+                <li>各パターンでドリンクチケット＆PAIDカードを渡す</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="s06" data-screen-label="06 ドリンク代の請求ロジック" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">06 🍺 ドリンク代の請求ロジック</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-left:3px solid #3fa9e0; border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:6px;">通常トーナメント</div>
+              <div style="font-size:13.5px; line-height:1.85;">ファーストエントリー時のみ ＋<span style="font-family:'DotGothic16',sans-serif; font-size:16px; color:#eeb111;">¥1,000</span><br>ドリンクチケット2枚配布／リエントリー時はドリンク代なし</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-left:3px solid #ec3f8f; border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:6px;">Tag Team（飲み放題付き）</div>
+              <div style="font-size:13.5px; line-height:1.85;">毎回請求（リエントリー時も毎回）<br>理由：飲み放題のため。チーム全員のGame IDは不要、リーダーのGame IDのみ受付</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-left:3px solid #eeb111; border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:6px;">3on3</div>
+              <div style="font-size:13.5px; line-height:1.85;">ドリンク代 <span style="font-family:'DotGothic16',sans-serif; font-size:16px; color:#eeb111;">¥3,000</span>／プレイ中飲み放題<br>代表者1名のGame IDアカウントがあればエントリー可能</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s07" data-screen-label="07 リストバンド・協賛トナメ" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">07 🥤 リストバンド・協賛トナメ</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(63,169,224,0.1); border:1px solid rgba(63,169,224,0.4); border-radius:10px; padding:14px 15px;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:9px;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11.5px; letter-spacing:0.08em; color:#0b2145; background:#3fa9e0; border-radius:5px; padding:3px 8px;">参考</span>
+                <span style="font-size:13px; font-weight:700; color:#8ed2f2;">過去事例</span>
+              </div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.9;">
+                <li>NLH Aqua（のむシリカ）：リストバンドあり／ドリンク代¥2,000／のむシリカ・ソフトドリンク飲み放題</li>
+                <li>NLH Tag Team（クライナー）：リストバンドあり／ドリンク代¥2,000／ビール・ハイボール・ソフトドリンク飲み放題</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">受付時のポイント</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>リストバンドを渡す対象トナメか確認</li>
+                <li>ドリンク代の金額を正確に受付</li>
+                <li>飲み放題対象外の飲料は別途料金</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="s08" data-screen-label="08 未成年者対応" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">08 🔞 未成年者対応</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,85,102,0.1); border:1px solid rgba(255,85,102,0.45); border-radius:10px; padding:14px 15px;">
+              <span style="flex:none; font-family:'DotGothic16',sans-serif; font-size:12px; background:#ff5566; color:#2a0710; border-radius:6px; padding:4px 8px;">プレイ</span>
+              <div style="font-size:13.5px; line-height:1.85;">18歳未満はトーナメントにエントリー不可。受付で年齢確認し、明らかな未成年のエントリーは断固拒否</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <span style="flex:none; font-size:18px; line-height:1.2;">🕘</span>
+              <div>
+                <div style="font-size:14.5px; font-weight:700; margin-bottom:5px;">条例による門限あり</div>
+                <div style="font-size:13.5px; line-height:1.85;">プレイしない18歳未満は入場可。ただし大阪府の深夜条例（19時〜翌5時）に基づき、18歳未満は夜間帯の滞在不可。一人で歩く18歳未満らしき客を見たら運営スタッフへ。</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s09" data-screen-label="09 クレジットカード決済" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">09 💳 クレジットカード決済</h2>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+            <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">決済ルール</div>
+            <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.9;">
+              <li>タッチ決済 可</li>
+              <li>金額制限なし</li>
+              <li>決済端末は窓口に固定、隣窓口の決済には使わない</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s10" data-screen-label="10 その他の受付対応" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">10 📋 その他の受付対応</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:7px;">🧾 領収書</div>
+              <div style="font-size:13.5px; line-height:1.85;">希望者は受付デスクのQRを読み、申請フォームを記入してもらう</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:7px;">🧳 荷物預かり</div>
+              <div style="font-size:13.5px; line-height:1.85;">お預かり不可。近隣コインロッカーへ案内（堂島リバーフォーラム周辺）</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s11" data-screen-label="11 服装・身だしなみチェック" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">11 👔 服装・身だしなみチェック</h2>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;">
+            <div style="font-family:'DotGothic16',sans-serif; font-size:13px; letter-spacing:0.12em; color:rgba(232,238,251,0.68);">CHECK {{ checkedCount }} / 13</div>
+            <button type="button" onClick="{{ resetDress }}" style="padding:7px 12px; min-height:32px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.28); color:rgba(232,238,251,0.75); font-family:'Noto Sans JP',sans-serif; font-size:11.5px; cursor:pointer;" style-hover="border-color:#eeb111; color:#eeb111;">リセット</button>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button type="button" onClick="{{ c1.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c1.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c1.boxBorder }}; background:{{ c1.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c1.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#3fa9e0; border:1px solid #3fa9e0;">男性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c1.deco }};">白カッターシャツ（半袖不可）</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c2.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c2.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c2.boxBorder }}; background:{{ c2.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c2.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#3fa9e0; border:1px solid #3fa9e0;">男性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c2.deco }};">ネクタイ持参</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c3.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c3.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c3.boxBorder }}; background:{{ c3.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c3.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#3fa9e0; border:1px solid #3fa9e0;">男性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c3.deco }};">黒スラックス</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c4.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c4.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c4.boxBorder }}; background:{{ c4.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c4.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#3fa9e0; border:1px solid #3fa9e0;">男性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c4.deco }};">黒靴（スニーカー不可）</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c5.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c5.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c5.boxBorder }}; background:{{ c5.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c5.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#3fa9e0; border:1px solid #3fa9e0;">男性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c5.deco }};">腕まくり禁止</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c6.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c6.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c6.boxBorder }}; background:{{ c6.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c6.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#ec3f8f; border:1px solid #ec3f8f;">女性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c6.deco }};">白ブラウス／シャツ</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c7.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c7.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c7.boxBorder }}; background:{{ c7.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c7.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#ec3f8f; border:1px solid #ec3f8f;">女性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c7.deco }};">黒スカートまたはスラックス</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c8.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c8.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c8.boxBorder }}; background:{{ c8.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c8.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#ec3f8f; border:1px solid #ec3f8f;">女性</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c8.deco }};">黒靴（スニーカー不可）</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c9.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c9.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c9.boxBorder }}; background:{{ c9.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c9.mark }}</span>
+              <span style="flex:1; display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                <span style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; color:#ff5566; border:1px solid #ff5566;">着用NG</span>
+                <span style="font-size:13.5px; line-height:1.65; text-decoration:{{ c9.deco }};">ベレー帽・黒マスク・カーゴパンツ・デニム・柄物シャツ／スカート・ノースリーブ</span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ c10.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c10.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c10.boxBorder }}; background:{{ c10.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c10.mark }}</span>
+              <span style="flex:1; font-size:13.5px; line-height:1.65; text-decoration:{{ c10.deco }};">タトゥー類は基本すべて隠す</span>
+            </button>
+            <button type="button" onClick="{{ c11.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c11.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c11.boxBorder }}; background:{{ c11.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c11.mark }}</span>
+              <span style="flex:1; font-size:13.5px; line-height:1.65; text-decoration:{{ c11.deco }};">貴重品は会場に持ち込まない／大きな荷物はコインロッカー</span>
+            </button>
+            <button type="button" onClick="{{ c12.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c12.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c12.boxBorder }}; background:{{ c12.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c12.mark }}</span>
+              <span style="flex:1; font-size:13.5px; line-height:1.65; text-decoration:{{ c12.deco }};">私物バッグは控え、貸出の透明ポーチを使用（帰りに返却）</span>
+            </button>
+            <button type="button" onClick="{{ c13.toggle }}" style="display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%; min-height:48px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#e8eefb; font-family:'Noto Sans JP',sans-serif; cursor:pointer; opacity:{{ c13.opacity }};" style-hover="border-color:rgba(238,177,17,0.5);">
+              <span style="flex:none; width:20px; height:20px; margin-top:1px; border-radius:5px; border:2px solid {{ c13.boxBorder }}; background:{{ c13.boxBg }}; color:#0b2145; font-size:13px; font-weight:900; line-height:16px; text-align:center;">{{ c13.mark }}</span>
+              <span style="flex:1; font-size:13.5px; line-height:1.65; text-decoration:{{ c13.deco }};">移動時のポシェット斜めがけ禁止</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="s12" data-screen-label="12 飲食・喫煙・SNS" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">12 🍱 飲食・喫煙・SNS</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">🥤 飲食物</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>受付に持込可：蓋付きのもの・会場内販売品のみ</li>
+                <li>その他の飲食は控室でのみ</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">🚬 喫煙・飲酒</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>指定喫煙所のみ使用／紙タバコ・座り込み禁止</li>
+                <li>20歳未満の喫煙・飲酒を発見したらすぐ運営へ報告</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+              <div style="font-size:14.5px; font-weight:700; margin-bottom:9px;">📱 SNS投稿</div>
+              <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.85;">
+                <li>ポジティブな投稿は大歓迎</li>
+                <li>ネガティブ・イメージを損なう投稿は控える</li>
+                <li>バックヤード（運営スペース）の写真は載せない</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="s13" data-screen-label="13 スタッフ用ドリンク・お弁当" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">13 🍙 スタッフ用ドリンク・お弁当</h2>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px;">
+            <ul style="margin:0; padding-left:1.1em; font-size:13.5px; line-height:1.9;">
+              <li>ドリンカーにスタッフである旨を伝えて受け取る</li>
+              <li>弁当は当日責任者から場所を聞く</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s14" data-screen-label="14 物販" style="scroll-margin-top:64px; margin-bottom:34px;">
+          <h2 style="font-family:'DotGothic16',sans-serif; font-size:21px; letter-spacing:0.04em; color:#eeb111; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid rgba(238,177,17,0.45);">14 🛍️ 物販</h2>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:14px 15px; font-size:13.5px; line-height:1.85;">本会場(地下2階)の受付前にあります。</div>
+        </section>
+
+        <div style="text-align:center; padding:22px 0 44px; border-top:1px solid rgba(255,255,255,0.14);">
+          <div style="display:flex; gap:14px; justify-content:center; font-size:20px; margin:18px 0 14px;">
+            <span style="color: #FF1616">♠</span>
+            <span style="color: #EC963F">♥</span>
+            <span style="color: #E0D73F">♦</span>
+            <span style="color: #27BD00">♣</span>
+          </div>
+          <div style="font-size:13px; line-height:2; color:rgba(232,238,251,0.78);">分からないことは遠慮なく責任者へ。<br>詳細情報が入り次第、本リファレンスは随時更新されます。<br>感謝と敬意を大切に、全員で良い現場を作りましょう。</div>
+          <div style="font-family:'DotGothic16',sans-serif; font-size:11px; letter-spacing:0.2em; color:rgba(232,238,251,0.4); margin-top:18px;">SPADIE FUKUOKA 2nd</div>
+        </div>
+
+      </div>
+    </div>
+  </div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:900},&quot;showPattern&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showLegend&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;strikeCompleted&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;チェックリスト&quot;}}">
+const KEY = 'spadie-osaka2-dress-v1';
+const N = 13;
+
+class Component extends DCLogic {
+  state = { loading: true, loadOpacity: 1, checked: {} };
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) this.setState({ checked: JSON.parse(raw) || {} });
+    } catch (e) {}
+    this._t1 = setTimeout(() => this.setState({ loadOpacity: 0 }), 1750);
+    this._t2 = setTimeout(() => this.setState({ loading: false }), 2150);
+  }
+  componentWillUnmount() { clearTimeout(this._t1); clearTimeout(this._t2); }
+
+  persist(checked) {
+    this.setState({ checked });
+    try { localStorage.setItem(KEY, JSON.stringify(checked)); } catch (e) {}
+  }
+
+  jump(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 62, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const strike = this.props.strikeCompleted ?? true;
+    const checked = this.state.checked;
+    const go = {};
+    for (let i = 1; i <= 14; i++) {
+      const id = 's' + String(i).padStart(2, '0');
+      go[id] = () => this.jump(id);
+    }
+    const vals = {
+      loading: this.state.loading,
+      loadOpacity: this.state.loadOpacity,
+      showPattern: this.props.showPattern ?? true,
+      showLegend: this.props.showLegend ?? true,
+      go: go,
+      checkedCount: Object.keys(checked).filter(k => checked[k]).length,
+      resetDress: () => this.persist({})
+    };
+    for (let i = 1; i <= N; i++) {
+      const on = !!checked[i];
+      vals['c' + i] = {
+        mark: on ? '✓' : '',
+        boxBorder: on ? '#eeb111' : 'rgba(255,255,255,0.4)',
+        boxBg: on ? '#eeb111' : 'transparent',
+        deco: on && strike ? 'line-through' : 'none',
+        opacity: on ? 0.5 : 1,
+        toggle: () => {
+          const next = Object.assign({}, this.state.checked);
+          if (next[i]) delete next[i]; else next[i] = true;
+          this.persist(next);
+        }
+      };
+    }
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
